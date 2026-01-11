@@ -14,3 +14,7 @@ config/name="pharma-clicker"
 run/main_scene="uid://bqqmib4wn71mp"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://game_manager.gd"

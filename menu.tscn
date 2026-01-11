@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ud7gghet8hb1"]
 
 [ext_resource type="Script" uid="uid://0r36ki0oy5a4" path="res://menu.gd" id="1_5idg8"]
-[ext_resource type="Script" uid="uid://mgl10gti10wi" path="res://label.gd" id="1_mi5tt"]
+[ext_resource type="AudioStream" uid="uid://bg5ya1cfauvyo" path="res://audio/multi-pop1.wav" id="2_ouk20"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -28,44 +28,104 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 120
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="Score" type="Label" parent="MenuContainer"]
+[node name="MainLayout" type="VBoxContainer" parent="MenuContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="MenuContainer/MainLayout"]
+layout_mode = 2
+
+[node name="Stats" type="VBoxContainer" parent="MenuContainer/MainLayout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Score" type="Label" parent="MenuContainer/MainLayout/Header/Stats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "Pharma Clicker"
-script = ExtResource("1_mi5tt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer"]
+[node name="RPS" type="Label" parent="MenuContainer/MainLayout/Header/Stats"]
 layout_mode = 2
+text = "Revenue: $0/s"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/HBoxContainer"]
+[node name="Controls" type="HBoxContainer" parent="MenuContainer/MainLayout/Header"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="NewGameButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="MenuContainer/MainLayout/Header/Controls"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 text = "New Game"
 
-[node name="LoadGameButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="LoadGameButton" type="Button" parent="MenuContainer/MainLayout/Header/Controls"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "Load Game"
 
-[node name="QuitButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MenuContainer/MainLayout/Header/Controls"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "Quit"
 
-[node name="AddButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="ClickArea" type="CenterContainer" parent="MenuContainer/MainLayout"]
 layout_mode = 2
-text = "Add"
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
 
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/LoadGameButton" to="." method="load_game"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="quit_game"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/AddButton" to="." method="add_to_score"]
+[node name="AddButton" type="Button" parent="MenuContainer/MainLayout/ClickArea"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "PRODUCE PILLS"
+
+[node name="Columns" type="HBoxContainer" parent="MenuContainer/MainLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="LeftCol" type="VBoxContainer" parent="MenuContainer/MainLayout/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MenuContainer/MainLayout/Columns/LeftCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Assets"
+horizontal_alignment = 1
+
+[node name="ShopScroll" type="ScrollContainer" parent="MenuContainer/MainLayout/Columns/LeftCol"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShopList" type="VBoxContainer" parent="MenuContainer/MainLayout/Columns/LeftCol/ShopScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightCol" type="VBoxContainer" parent="MenuContainer/MainLayout/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MenuContainer/MainLayout/Columns/RightCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Research"
+horizontal_alignment = 1
+
+[node name="UpgradeScroll" type="ScrollContainer" parent="MenuContainer/MainLayout/Columns/RightCol"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UpgradeGrid" type="GridContainer" parent="MenuContainer/MainLayout/Columns/RightCol/UpgradeScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="SoundFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ouk20")
+
+[connection signal="pressed" from="MenuContainer/MainLayout/Header/Controls/NewGameButton" to="." method="new_game"]
+[connection signal="pressed" from="MenuContainer/MainLayout/Header/Controls/LoadGameButton" to="." method="load_game"]
+[connection signal="pressed" from="MenuContainer/MainLayout/Header/Controls/QuitButton" to="." method="quit_game"]
+[connection signal="pressed" from="MenuContainer/MainLayout/ClickArea/AddButton" to="." method="add_to_score"]

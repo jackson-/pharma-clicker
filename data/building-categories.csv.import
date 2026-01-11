@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bak7euoabggyu"
+
+[deps]
+
+files=["res://data/building-categories.Cookie Clicker Building.translation", "res://data/building-categories.Pharma Equivalent.translation", "res://data/building-categories.Satirical Role / Economic Function.translation"]
+
+source_file="res://data/building-categories.csv"
+dest_files=["res://data/building-categories.Cookie Clicker Building.translation", "res://data/building-categories.Pharma Equivalent.translation", "res://data/building-categories.Satirical Role / Economic Function.translation"]
+
+[params]
+
+compress=true
+delimiter=0

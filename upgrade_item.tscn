@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6u7v4n8m2qa"]
+
+[ext_resource type="Script" path="res://upgrade_item.gd" id="1_script"]
+
+[node name="UpgradeItem" type="Button"]
+custom_minimum_size = Vector2(150, 60)
+offset_right = 150.0
+offset_bottom = 60.0
+text = "Upgrade Name
+$500"
+script = ExtResource("1_script")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

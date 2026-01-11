@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqqmib4wn71mp"]
+[gd_scene load_steps=4 format=3 uid="uid://bqqmib4wn71mp"]
 
 [ext_resource type="Script" uid="uid://c5d7ao1dsjadh" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ud7gghet8hb1" path="res://menu.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dc15cohuq2weq" path="res://music.gd" id="4_lquwl"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
@@ -11,5 +12,8 @@ script = ExtResource("1_0xm2m")
 [node name="SaveTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+script = ExtResource("4_lquwl")
 
 [connection signal="timeout" from="SaveTimer" to="." method="timeout_save"]
